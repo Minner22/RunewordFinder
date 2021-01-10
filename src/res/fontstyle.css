@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Exocet Reaper Medium Regular';
+    src: url('Exocet_Reaper_Medium_Regular.ttf');
+}
+
+.label {
+    -fx-font-family: 'Exocet Reaper Medium Regular';
+    -fx-font-size: 20;
+}
+
+.button .text {
+    -fx-font-family: 'Exocet Reaper Medium Regular';
+}
