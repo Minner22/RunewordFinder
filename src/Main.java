@@ -2,9 +2,13 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import runes.Rune;
+import runes.Runeword;
 import util.XMLReader;
 
 
@@ -21,6 +25,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        Image image = Rune.ETH.getImage();
+        ImageView imageView = new ImageView(image);
+
+        System.out.println("eni: " + Runeword.ENIGMA.getProperties());
+
         window = primaryStage;
         window.setTitle("RunewordFinder");
 
@@ -32,7 +41,7 @@ public class Main extends Application {
         Button exit = new Button("Exit");
         exit.setOnAction(e -> closeProgram());
 
-        Label label1 = new Label("this is first scene");
+        Label label1 = new Label(Rune.ETH.getProperties(), imageView);
         Button button1 = new Button("use 2nd scene");
         button1.setOnAction(e-> window.setScene(s2));
 
@@ -60,8 +69,6 @@ public class Main extends Application {
 
         window.setScene(s1);
         window.show();
-        XMLReader xmlReader = new XMLReader();
-        xmlReader.testParser();
     }
 
     private void closeProgram() {
