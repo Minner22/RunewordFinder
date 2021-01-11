@@ -1,3 +1,4 @@
+import core.PlayerRunes;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -5,11 +6,15 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import runes.Rune;
 import runes.Runeword;
-import util.XMLReader;
+import gui.AlertBox;
+import gui.ConfirmBox;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Random;
 
 
 public class Main extends Application {
@@ -28,7 +33,18 @@ public class Main extends Application {
         Image image = Rune.ETH.getImage();
         ImageView imageView = new ImageView(image);
 
-        System.out.println("eni: " + Runeword.ENIGMA.getProperties());
+        Random random = new Random();
+        PlayerRunes playerRunes = new PlayerRunes();
+        for (int i = 0; i < 1000; i++) {
+            playerRunes.addRune(java.util.List.of(Rune.values()).get(random.nextInt(Arrays.asList(Rune.values()).size())));
+        }
+        System.out.println(playerRunes.getPlayerRunes());
+
+        for (int i = 0; i < 500; i++) {
+            playerRunes.removeRune(java.util.List.of(Rune.values()).get(random.nextInt(Arrays.asList(Rune.values()).size())));
+        }
+        System.out.println(playerRunes.getPlayerRunes());
+        playerRunes.save();
 
         window = primaryStage;
         window.setTitle("RunewordFinder");

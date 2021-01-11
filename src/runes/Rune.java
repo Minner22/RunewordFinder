@@ -46,17 +46,16 @@ public enum Rune {
     private final String properties;
 
     Rune(String imgDir) {
-        //this.imgDir = imgDir;
         Image tempImage;
         String tempProp = "";
-        //XMLReader xmlReader = new XMLReader();
+
         try {
             InputStream in = getClass().getClassLoader().getResourceAsStream(imgDir);
             assert in != null;
             tempImage = new Image(in);
 
-            XMLReader xmlReader = new XMLReader();
-            tempProp = xmlReader.getXMLRuneProp(this);
+            String xmlFileDirectory = "res/runewordFinder.xml";
+            tempProp = XMLReader.getRunePropertiesFromXML(this, xmlFileDirectory);
 
         } catch (Exception e) {
             e.printStackTrace();

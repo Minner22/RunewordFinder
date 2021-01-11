@@ -115,10 +115,9 @@ public enum Runeword {
         this.runes = runes;
 
         String tempProp = "";
-        //XMLReader xmlReader = new XMLReader();
         try {
-            XMLReader xmlReader = new XMLReader();
-            tempProp = xmlReader.getXMLRunewordProp(this);
+            String xmlFileDirectory = "res/runewordFinder.xml";
+            tempProp = XMLReader.getRunewordPropertiesFromXML(this, xmlFileDirectory);
 
         } catch (Exception e) {
             e.printStackTrace();
