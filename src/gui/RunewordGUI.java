@@ -1,22 +1,23 @@
 package gui;
 
-import javafx.fxml.Initializable;
+import items.ItemType;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 import runes.Rune;
 import runes.Runeword;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
-public class RunewordGUI {
+public class RunewordGUI extends VBox {
     private Label runewordName;
     private final Runeword runeword;
     private VBox runewordVBox;
@@ -28,9 +29,10 @@ public class RunewordGUI {
 
     //TODO: new window with runeword properties and item types.
     public RunewordGUI(Runeword runeword) {
+        super(SPACING);
         this.runeword = runeword;
-        runewordVBox = new VBox(SPACING);
-        runewordVBox.setAlignment(Pos.CENTER_LEFT);
+        //runewordVBox = new VBox(SPACING);
+        this.setAlignment(Pos.CENTER_LEFT);
 
         List<Rune> runes = runeword.getRunes();
         HBox runewordHBox = new HBox(SPACING);
@@ -64,7 +66,7 @@ public class RunewordGUI {
 
         runewordName = new Label(runeword.getName());
 
-        runewordVBox.getChildren().addAll(runewordName, runewordHBox);
+        this.getChildren().addAll(runewordName, runewordHBox);
 
     }
 
@@ -72,7 +74,49 @@ public class RunewordGUI {
         return runewordVBox;
     }
 
-    public void update() {
+    public void getRunewordDetails() {
+
+        Stage runewordDetails = new Stage();
+        runewordDetails.setTitle(runeword.getName());
+
+        VBox runewordDetailsVBox = new VBox(SPACING);
+        runewordDetailsVBox.setAlignment(Pos.CENTER);
+
+        Label name = new Label(runeword.getName());
+        name.setStyle("-fx-font-size: 16pt");
+        Label reqLevel = new Label("Required Level: " + runeword.getLevel());
+        reqLevel.setStyle("-fx-text-fill: #ffffff");
+        Label properties = new Label(runeword.getProperties());
+        properties.setStyle("-fx-text-fill: #101093");
+        properties.setTextAlignment(TextAlignment.CENTER);
+        Label itemTypesHeader = new Label("Item type:");
+        itemTypesHeader.setStyle("-fx-text-fill: #ffffff");
+
+        HBox runeImgs = new HBox(SPACING);
+        runeImgs.setAlignment(Pos.CENTER);
+        for (Rune rune : runeword.getRunes()) {
+            ImageView img = new ImageView(rune.getImage());
+            Tooltip.install(img, new Tooltip(rune.getProperties()));
+            runeImgs.getChildren().add(img);
+        }
+
+        StringBuilder itemTypes = new StringBuilder();
+        for (ItemType it : runeword.getTypes()) {
+            itemTypes.append(it.getName()).append("\n");
+        }
+
+        Label itemTypesBody = new Label(itemTypes.toString());
+        itemTypesBody.setStyle("-fx-text-fill: #ffffff");
+
+        Button exitButton = new Button("Exit");
+        exitButton.setOnAction(e -> runewordDetails.close());
+
+        runewordDetailsVBox.getChildren().addAll(name, runeImgs, reqLevel, properties, itemTypesHeader, itemTypesBody, exitButton);
+
+        Scene scene = new Scene(runewordDetailsVBox);
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("fontstyle.css").toExternalForm());
+        runewordDetails.setScene(scene);
+        runewordDetails.showAndWait();
 
     }
 }

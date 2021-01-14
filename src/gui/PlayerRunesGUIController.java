@@ -30,7 +30,7 @@ public class PlayerRunesGUIController implements Initializable {
 
     private PlayerRunes playerRunes;
     private SearchEngine searchEngine;
-    ListView<VBox> runewordsListView;
+    ListView<RunewordGUI> runewordsListView;
     private static final int SPACING = 5;
 
     @Override
@@ -42,6 +42,12 @@ public class PlayerRunesGUIController implements Initializable {
         generateRunewordListView();
         possibleRunewordsScrollPane.setContent(runewordsListView);
 
+
+        runewordsListView.setOnMouseClicked(e -> {
+            if (runewordsListView.getSelectionModel().getSelectedItem() != null) {
+                runewordsListView.getSelectionModel().getSelectedItem().getRunewordDetails();
+            }
+        });
 
         //player runes manipulator
         VBox playerRunesVBox = new VBox(SPACING);
@@ -57,12 +63,12 @@ public class PlayerRunesGUIController implements Initializable {
 
     private void generateRunewordListView() {
         List<Runeword> runewordList = searchEngine.getRunewordsPlayerCanMake();
-        List<VBox> generatedRunewords = new ArrayList<>();
+        List<RunewordGUI> generatedRunewords = new ArrayList<>();
         for (Runeword runeword : runewordList) {
-            generatedRunewords.add(new RunewordGUI(runeword).getRunewordVBox());
+            generatedRunewords.add(new RunewordGUI(runeword));
         }
-        for (VBox vBox : generatedRunewords) {
-            runewordsListView.getItems().add(vBox);
+        for (RunewordGUI runewordGUI : generatedRunewords) {
+            runewordsListView.getItems().add(runewordGUI);
         }
     }
 
