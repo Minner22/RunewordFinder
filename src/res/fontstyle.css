@@ -3,10 +3,84 @@
     src: url('Exocet_Reaper_Medium_Regular.ttf');
 }
 
+
+
+.root {
+    -fx-font-family: 'Exocet Reaper Medium Regular';
+    -fx-background-color: #56010b;
+    -fx-text-fill: #b78727;
+    -fx-base: #56010b;
+}
+
 .label {
     -fx-font-family: 'Exocet Reaper Medium Regular';
+    -fx-text-fill: #b78727;
 }
 
 .button .text {
     -fx-font-family: 'Exocet Reaper Medium Regular';
+    -fx-font-size: 16pt;
+    -fx-base: #4e0a11;
+    -fx-text-fill: #000000;
 }
+
+.button {
+    -fx-font-family: 'Exocet Reaper Medium Regular';
+    -fx-base: #b78727;
+    -fx-border-color: #000000;
+    -fx-font-size: 11pt;
+
+}
+
+.scroll-pane {
+    -fx-font-family: 'Exocet Reaper Medium Regular';
+    -fx-background-color: #56010b;
+    -fx-text-fill: #b78727;
+    -fx-base: #56010b;
+    -fx-border-color: #000000;
+}
+.scroll-pane .thumb {
+    -fx-background-color: #450109;
+}
+
+.scroll-pane .increment-button {
+    -fx-background-color: #450109;
+}
+
+.scroll-pane .decrement-button {
+    -fx-background-color: #450109;
+}
+
+.scroll-pane .track {
+    -fx-background-color: #6c010e;
+}
+
+.list-view {
+    -fx-background-color: #56010b;
+}
+
+.list-cell {
+    -fx-background-color: #56010b;
+    -fx-base: #56010b;
+
+}
+.list-cell:selected{
+    -fx-background-color: #450109;
+
+}
+
+.split-pane {
+    -fx-background-color: #56010b;
+    -fx-base: #56010b;
+}
+
+.split-pane .split-pane-divider {
+    -fx-background-color: #56010b;
+    -fx-base: #56010b;
+}
+
+
+.image-view {
+    -fx-base: #000000;
+}
+

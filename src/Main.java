@@ -1,26 +1,30 @@
 import core.PlayerRunes;
+import core.SearchEngine;
+import gui.*;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import runes.Rune;
 import runes.Runeword;
-import gui.AlertBox;
-import gui.ConfirmBox;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
 
 
 public class Main extends Application {
 
     Stage window;
-    Scene s1, s2;
+    Scene scene;
+    PlayerRunesGUIController playerRunesGUIController;
 
     public static void main(String[] args) {
         launch(args);
@@ -30,67 +34,31 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Image image = Rune.ETH.getImage();
-        ImageView imageView = new ImageView(image);
-
-        Random random = new Random();
         PlayerRunes playerRunes = new PlayerRunes();
-        for (int i = 0; i < 1000; i++) {
-            playerRunes.addRune(java.util.List.of(Rune.values()).get(random.nextInt(Arrays.asList(Rune.values()).size())));
-        }
-        System.out.println(playerRunes.getPlayerRunes());
+        SearchEngine searchEngine = new SearchEngine();
 
-        for (int i = 0; i < 500; i++) {
-            playerRunes.removeRune(java.util.List.of(Rune.values()).get(random.nextInt(Arrays.asList(Rune.values()).size())));
-        }
-        System.out.println(playerRunes.getPlayerRunes());
-        playerRunes.save();
+        Parent root = FXMLLoader.load(getClass().getResource("playerRunesPage.fxml"));
+        primaryStage.setTitle("RunewordFinder");
+        primaryStage.setResizable(false);
 
-        window = primaryStage;
-        window.setTitle("RunewordFinder");
+        scene = new Scene(root, 900,600);
+        scene.getStylesheets().add(getClass().getResource("fontstyle.css").toExternalForm());
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
-        window.setOnCloseRequest(e -> {
+        /*
+        primaryStage.setOnCloseRequest(e -> {
             e.consume();
             closeProgram();
         });
 
-        Button exit = new Button("Exit");
-        exit.setOnAction(e -> closeProgram());
-
-        Label label1 = new Label(Rune.ETH.getProperties(), imageView);
-        Button button1 = new Button("use 2nd scene");
-        button1.setOnAction(e-> window.setScene(s2));
-
-        Button conBox = new Button("question");
-        conBox.setOnAction(e ->  {
-            boolean result = ConfirmBox.display("Diablo", "Do you like Diablo 2");
-            System.out.println(result);
-        });
-
-        VBox layout1 = new VBox(10);
-        layout1.getChildren().addAll(label1, button1, conBox, exit);
-        s1 = new Scene(layout1, 300,300);
-        s1.getStylesheets().add(getClass().getResource("fontstyle.css").toExternalForm());
-
-        Button button2 = new Button("alert");
-        button2.setOnAction(e -> AlertBox.display("Alert", "Testing alert windows"));
-
-        Button button3 = new Button("go back");
-        button3.setOnAction(e -> window.setScene(s1));
-
-        VBox layout2 = new VBox(10);
-        layout2.getChildren().addAll(button2, button3, exit);
-        s2 = new Scene(layout2, 200,200);
-        s2.getStylesheets().add(getClass().getResource("fontstyle.css").toExternalForm());
-
-        window.setScene(s1);
-        window.show();
+         */
     }
 
     private void closeProgram() {
         boolean answer = ConfirmBox.display("leaving RunewordFinder", "Are you sure?");
         if (answer) {
-            System.out.println("here save config with users runes");
+            playerRunesGUIController.savePlayerRunes();
             window.close();
         }
     }

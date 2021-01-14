@@ -65,16 +65,9 @@ public enum Rune {
         properties = tempProp;
     }
 
-    /*
-    public String getImgDir() {
-        return imgDir;
-    }
-     */
-
     public Image getImage() {
         return image;
     }
-
 
     public String getProperties() {
         return properties;

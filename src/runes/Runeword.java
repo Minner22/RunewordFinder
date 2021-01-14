@@ -67,14 +67,14 @@ public enum Runeword {
     BRAND("Brand", 65, ItemTypeContainer.MISSILE_WEAPON.getTypes(), new ArrayList<>(Arrays.asList(JAH, LO, MAL, GUL))),
     DEATH("Death", 55, new HashSet<>(Arrays.asList(SWORD, AXE)), new ArrayList<>(Arrays.asList(HEL, EL, VEX, ORT, GUL))),
     DESTRUCTION("Destruction", 65, new HashSet<>(Arrays.asList(POLEARM, SWORD)), new ArrayList<>(Arrays.asList(VEX, LO, BER, JAH, KO))),
-    DRAGON_ARMOR("Dragon", 61, new HashSet<>(Collections.singletonList(BODY_ARMOR)), new ArrayList<>(Arrays.asList(SUR, LO, SOL))),
-    DRAGON_SHIELD("Dragon", 61, ItemTypeContainer.SHIELD.getTypes(), new ArrayList<>(Arrays.asList(SUR, LO, SOL))),
-    DREAM_HELMET("Dream", 65, new HashSet<>(Collections.singletonList(HELM)), new ArrayList<>(Arrays.asList(IO, JAH, PUL))),
-    DREAM_SHIELD("Dream", 65, ItemTypeContainer.SHIELD.getTypes(), new ArrayList<>(Arrays.asList(IO, JAH, PUL))),
+    DRAGON_ARMOR("Dragon (armor)", 61, new HashSet<>(Collections.singletonList(BODY_ARMOR)), new ArrayList<>(Arrays.asList(SUR, LO, SOL))),
+    DRAGON_SHIELD("Dragon (shield)", 61, ItemTypeContainer.SHIELD.getTypes(), new ArrayList<>(Arrays.asList(SUR, LO, SOL))),
+    DREAM_HELMET("Dream (helm)", 65, new HashSet<>(Collections.singletonList(HELM)), new ArrayList<>(Arrays.asList(IO, JAH, PUL))),
+    DREAM_SHIELD("Dream (shield)", 65, ItemTypeContainer.SHIELD.getTypes(), new ArrayList<>(Arrays.asList(IO, JAH, PUL))),
     EDGE("Edge", 25, ItemTypeContainer.MISSILE_WEAPON.getTypes(), new ArrayList<>(Arrays.asList(TIR, TAL, AMN))),
     FAITH("Faith", 65, ItemTypeContainer.MISSILE_WEAPON.getTypes(), new ArrayList<>(Arrays.asList(OHM, JAH, LEM, ELD))),
-    FORTITUDE_ARMOR("Fortitude", 59, new HashSet<>(Collections.singletonList(BODY_ARMOR)), new ArrayList<>(Arrays.asList(EL, SOL, DOL, LO))),
-    FORTITUDE_WEAPON("Fortitude", 59, ItemTypeContainer.WEAPON.getTypes(), new ArrayList<>(Arrays.asList(EL, SOL, DOL, LO))),
+    FORTITUDE_ARMOR("Fortitude (armor)", 59, new HashSet<>(Collections.singletonList(BODY_ARMOR)), new ArrayList<>(Arrays.asList(EL, SOL, DOL, LO))),
+    FORTITUDE_WEAPON("Fortitude (weapon)", 59, ItemTypeContainer.WEAPON.getTypes(), new ArrayList<>(Arrays.asList(EL, SOL, DOL, LO))),
     GRIEF("Grief", 59, new HashSet<>(Arrays.asList(SWORD, AXE)), new ArrayList<>(Arrays.asList(ETH, TIR, LO, MAL, RAL))),
     HARMONY("Harmony", 39, ItemTypeContainer.MISSILE_WEAPON.getTypes(), new ArrayList<>(Arrays.asList(TIR, ITH, SOL, KO))),
     ICE("Ice", 65, ItemTypeContainer.MISSILE_WEAPON.getTypes(), new ArrayList<>(Arrays.asList(AMN, SHAEL, JAH, LO))),
@@ -84,12 +84,12 @@ public enum Runeword {
     LAWBRINGER("Lawbringer", 43, new HashSet<>(Arrays.asList(SWORD, HAMMER, SCEPTER)), new ArrayList<>(Arrays.asList(AMN, LEM, KO))),
     OATH("Oath", 59, new HashSet<>(Arrays.asList(SWORD, AXE, MACE)), new ArrayList<>(Arrays.asList(SHAEL, PUL, MAL, LUM))),
     OBEDIENCE("Obedience", 41, new HashSet<>(Collections.singletonList(POLEARM)), new ArrayList<>(Arrays.asList(HEL, KO, THUL, ETH, FAL))),
-    PHOENIX_WEAPON("Phoenix", 65, ItemTypeContainer.WEAPON.getTypes(), new ArrayList<>(Arrays.asList(VEX, VEX, LO, JAH))),
-    PHOENIX_SHIELD("Phoenix", 65, ItemTypeContainer.SHIELD.getTypes(), new ArrayList<>(Arrays.asList(VEX, VEX, LO, JAH))),
+    PHOENIX_WEAPON("Phoenix (weapon)", 65, ItemTypeContainer.WEAPON.getTypes(), new ArrayList<>(Arrays.asList(VEX, VEX, LO, JAH))),
+    PHOENIX_SHIELD("Phoenix (shield)", 65, ItemTypeContainer.SHIELD.getTypes(), new ArrayList<>(Arrays.asList(VEX, VEX, LO, JAH))),
     PRIDE("Pride", 67, new HashSet<>(Collections.singletonList(POLEARM)), new ArrayList<>(Arrays.asList(CHAM, SUR, IO, LO))),
     RIFT("Rift", 53, new HashSet<>(Arrays.asList(POLEARM, SCEPTER)), new ArrayList<>(Arrays.asList(HEL, KO, LEM, GUL))),
-    SPIRIT_SWORD("Spirit", 25, new HashSet<>(Collections.singletonList(SWORD)), new ArrayList<>(Arrays.asList(TAL, THUL, ORT, AMN))),
-    SPIRIT_SHIELD("Spirit", 25, ItemTypeContainer.SHIELD.getTypes(), new ArrayList<>(Arrays.asList(TAL, THUL, ORT, AMN))),
+    SPIRIT_SWORD("Spirit (sword)", 25, new HashSet<>(Collections.singletonList(SWORD)), new ArrayList<>(Arrays.asList(TAL, THUL, ORT, AMN))),
+    SPIRIT_SHIELD("Spirit (shield)", 25, ItemTypeContainer.SHIELD.getTypes(), new ArrayList<>(Arrays.asList(TAL, THUL, ORT, AMN))),
     VOICE_OF_REASON("Voice of Reason", 43, new HashSet<>(Arrays.asList(SWORD, MACE)), new ArrayList<>(Arrays.asList(LEM, KO, EL, ELD))),
     WRATH("Wrath", 63, ItemTypeContainer.MISSILE_WEAPON.getTypes(), new ArrayList<>(Arrays.asList(PUL, LUM, BER, MAL))),
 
@@ -137,11 +137,15 @@ public enum Runeword {
         return Collections.unmodifiableSet(types);
     }
 
-    public ArrayList<Rune> getRunes() {
-        return (ArrayList<Rune>) Collections.unmodifiableList(runes);
+    public List<Rune> getRunes() {
+        return Collections.unmodifiableList(runes);
     }
 
     public String getProperties() {
         return properties;
+    }
+
+    public int getRuneCount() {
+        return runes.size();
     }
 }
